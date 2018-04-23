@@ -10,8 +10,8 @@
   
       <link rel="stylesheet" href="css/style.css">
 	<style>
-	body{
-	background:white;
+	body,html{
+	background:transparent;
 	overflow:hidden;
 	}
 	
@@ -35,6 +35,7 @@
 		position:absolute;
 		right:0;
 		opacity:0.6;
+		z-index:-1;
 	}
 	
 	.icon{
@@ -46,21 +47,72 @@
 	.active-icon{
 		width:100%;
 		transition:1s all;
+		animation: example 5s infinite;
 	}
 	
 	.reverse{
 		 transform: rotate(180deg);
 		 }
-	
+		 
+		 
+	 @keyframes example {
+		0%   {transform: scale(1);}
+		25%  {transform: scale(1.1);}
+		75%  {transform: scale(0.9);}
+		100% {transform: scale(1);}
+	}
+
+		video{
+		position:absolute;
+		z-index:-3;
+		}
+		
+	.line{
+	position: absolute;
+width: 120px;
+top: 246px;
+right: 22px;
+}
+
 	</style>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	 <script src="http://danml.com/js/download.js"></script>
+	<script src="assets/js/compatibility.js"></script>
+	<script src="assets/js/smoother.js"></script>
+	<script src="assets/js/objectdetect.js"></script>
+	<script src="assets/js/objectdetect.frontalface_alt.js"></script>
+	<script src="assets/js/objectdetect.handfist.js"></script>
+	<script src="assets/js/main.js"></script>
+	
+	<link rel="stylesheet" href="assets/css/main.css"> 	
   <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
 </head>
 
 <body>
-<img src='gradient.png' class='gradient'/>
 <button class='up'> Up </button>
 <button class='down'> Down </button>
+<div class='displayBox'> 
+		<!--<video id="video" ></video>-->
+		<div id='infoDisplay' style="position: absolute; display: block; opacity: 0; z-index:-2;" > 
+			<ul>
+				<li class='begin'>INFO</li>
+				<li class='name'>Name : <label class='namev'> </label></li>
+				<li class='age'>Age: <label class='agev'> </label></li>
+				<li class='gender'>Gender :   <label class='genderv'> </label></li>
+				<li class='level' >Level :   <label class='levelv'> </label></li>
+				<li class='exp' >EXP :  <label class='expv'> </label></li>
+				<li class='status'>Status :   <label class='statusv'> </label></li>
+				<li class='role'>Role :   <label class='rolev'> </label></li>
+				<li class='ptask' >Previous Task :   <label class='ptaskv'> </label></li>
+				<li class='ctask'>Current Task :   <label class='ctaskv'> </label></li>
+				<li class='skill'>Main Skill :   <label class='skillv'> </label></li>
+				
+			</ul>
+		</div>
+	</div>
+<img src='gradient.png' class='gradient'/>
+
 <script>
 	var rotation = 0;
 
@@ -90,6 +142,7 @@
 		c++;
 		}
 		$('.icon-'+c).addClass('active-icon');
+
 	}
 		
 	$(document).ready(function(){
@@ -118,7 +171,9 @@
 </script>
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <section>
+<img class='line' src='line.png'/>
   <div class="nav ">
+  
     <ul class="radial-nav expanded">
     <li data-content="js"><a href="#"><img src='record.png' class='icon icon-3 ' c='3'/></a></li>
     <li data-content="css"><a href="#"><img src='progress.png' class='icon icon-4' c='4'/></a></li>
