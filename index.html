@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Radial menu</title>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  
+      <link rel="stylesheet" href="css/style.css">
+	<style>
+	body{
+	background:white;
+	overflow:hidden;
+	}
+	
+		.nav{
+		position: absolute;
+    width: 313px;
+    height: 312px;
+    text-align: center;
+    display: inline-block;
+    padding-top: 63px;
+	    right: -210px;
+    top: 152px;
+	transition:1s all;
+	}
+	
+	.radial-nav.expanded li:not(.menu){
+		border: none;
+		}
+	
+	.gradient{
+		position:absolute;
+		right:0;
+		opacity:0.6;
+	}
+	
+	.icon{
+	width:40%;
+	transition:1s all;
+
+	}
+	
+	.active-icon{
+		width:100%;
+		transition:1s all;
+	}
+	
+	.reverse{
+		 transform: rotate(180deg);
+		 }
+	
+	</style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+</head>
+
+<body>
+<img src='gradient.png' class='gradient'/>
+<button class='up'> Up </button>
+<button class='down'> Down </button>
+<script>
+	var rotation = 0;
+
+	function up(){
+		rotation+=45;
+		$('.nav').css({'transform' : 'rotate('+rotation+'deg)'});
+		var c = $('.active-icon').attr('c');
+		$('.active-icon').removeClass('active-icon');
+		if(c==1){
+			c=8;
+			}
+		else {
+		c--;
+		}
+		$('.icon-'+c).addClass('active-icon');
+	}
+	
+	function down(){
+		rotation-=45;
+		$('.nav').css({'transform' : 'rotate('+rotation+'deg)'});
+		var c = $('.active-icon').attr('c');
+		$('.active-icon').removeClass('active-icon');
+		if(c==8){
+			c=1;
+			}
+		else {
+		c++;
+		}
+		$('.icon-'+c).addClass('active-icon');
+	}
+		
+	$(document).ready(function(){
+		
+		$('.up').click(function(){			
+			up();
+		});
+		$('.down').click(function(){
+			down();
+		});
+		
+		if (annyang) {
+		  // Let's define a command.
+		  var commands = {
+			'next': function() {console.log("UP"); up() },
+			'back': function() { down() }
+		  };
+
+		  // Add our commands to annyang
+		  annyang.addCommands(commands);
+
+		  // Start listening.
+		  annyang.start({continuous:true,});
+		}
+	});
+</script>
+  <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<section>
+  <div class="nav ">
+    <ul class="radial-nav expanded">
+    <li data-content="js"><a href="#"><img src='record.png' class='icon icon-3 ' c='3'/></a></li>
+    <li data-content="css"><a href="#"><img src='progress.png' class='icon icon-4' c='4'/></a></li>
+    <li data-content="html5"><a href="#"><img src='user.png' class='icon icon-5 reverse' c='5'/></a></li>
+    <li data-content="jade"><a href="#"><img src='credit.png' class='icon icon-6' c='6'/></a></li>
+    <li data-content="git"><a href="#"><img src='record.png' class='icon icon-7' c='7'/></a></li>
+    <li data-content="grunt"><a href="#"><img src='progress.png' class='icon icon-8' c='8'/></a></li>
+    <li data-content="yo"><img src='user.png' class='icon active-icon icon-1' c='1'/></li>
+    <li data-content="gulp"><a href="#"><img src='credit.png' class='icon icon-2' c='2'/></a></li>
+  </ul>
+  </div>  
+ 
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+</body>
+
+</html>
