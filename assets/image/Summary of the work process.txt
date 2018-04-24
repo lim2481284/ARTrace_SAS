@@ -1,0 +1,30 @@
+chew 
+	- face recogntion 
+	- emotion 
+	- algorithm 
+	- presentation 
+
+nik 
+	- keyword
+	- integrate emotion 
+	- server database 
+		- customer detail 
+		- bank detail 
+			- bank acc 
+			- bank ( crediworkthy ) 
+			- bank status 
+			- account relation 
+		- recommendation
+		- emotion
+	
+
+lim
+	- intergration with nik 
+	- display info from database 
+	- display keywork 
+	- design slide 
+
+keat 
+	- customer /employee database  ( real ) 
+	- main summary : display best keyword ranking ( dummy )  , most welcome package ranking ( dummy )  , staff performance ranking ( dummy )  , action performance raning (dummy ) 
+	- meeting : emotion diagram ( real )
