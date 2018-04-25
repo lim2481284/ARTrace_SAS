@@ -1,0 +1,84 @@
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<style>
+		*{
+			-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+			-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+			box-sizing: border-box;         /* Opera/IE 8+ */
+			margin:0;
+		}
+	</style>
+</head>
+
+
+<body>
+
+
+	<div style="position: relative;width:100vw;height:100vh;">
+		<video id="video" width="400" height="300" autoplay loop style="position: absolute;object-fit: fill;z-index:0"></video>
+		<video id="video2" width="100%" height="100%" autoplay loop style="position: absolute;object-fit: fill;z-index:1"></video>
+		<canvas id="drawCanvas" width="400" height="300" style="position: absolute;z-index:1"></canvas>
+	</div>
+
+	<div style="position: fixed; top:0;left:0;z-index:2">
+		<button id="button">Take Picture</button>
+	</div>
+
+	<img src="" id="displayImage" style="bottom:0;position: absolute;"/>
+</body>
+
+<script src="js/libs/model_pca_20_svm.js"></script>
+<script src="js/emotionDetector.js"></script>
+<script src="js/emotionModel.js"></script>
+<script src="js/clmtrackr.js"></script>
+<script src="js/lzstring.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="js/faceDetection.js"></script>
+<script src="js/faceRecognition.js"></script>
+<script src="js/libs/d3.min.js"></script>
+<script src="js/libs/utils.js"></script>
+
+<script type="text/javascript">
+	var w = window.innerWidth
+	|| document.documentElement.clientWidth
+	|| document.body.clientWidth;
+
+	var h = window.innerHeight
+	|| document.documentElement.clientHeight
+	|| document.body.clientHeight;
+
+	$(document).ready(function(){
+		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+	    if (navigator.getUserMedia) {
+	      navigator.getUserMedia({video: true}, handleVideo, videoError);
+	    }
+
+		function handleVideo(stream) {
+			//var video=$("#video")
+			console.log(video)
+			video.srcObject = stream;
+			video2.srcObject = stream;
+			video2.width = w;
+			video2.height = h;
+		}
+
+		function videoError(e) {
+			console.log("Error handling video");
+			console.log(e)
+		}
+
+		$(button).click(function(){
+			var canvas=document.createElement('canvas');
+			canvas.width = video.width;
+			canvas.height = video.height;
+			canvas.getContext("2d").drawImage(video, 0, 0,canvas.width, canvas.height);
+			var img = canvas.toDataURL("image/jpeg",1.0);
+			$(displayImage).attr("src",img)
+			//console.log(img)
+			faceReco(img);
+			//viewGallery();
+		})
+	})
+</script>
