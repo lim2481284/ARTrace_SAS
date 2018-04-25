@@ -3,6 +3,12 @@ var headers = {
     "app_key"         : "ca64c4ea184e5e4ffed0349bf10922cb"
 };
 
+let subject = {
+  id:null,
+  face_id:"",
+  profile:null
+}
+
 function faceReco(image){
     var payload  = {
         "image":image,
@@ -20,7 +26,25 @@ function faceReco(image){
         console.log(response);
         if (response.images[0].transaction.status=="success"){
             console.log("Face matches")
-            var id=response.images[0].transaction.subject_id;
+            subject.face_id=response.images[0].transaction.face_id;
+
+            checkFace(subject.face_id).done(function(res){
+
+              if(res.length>0){
+                // Customer Exist
+                subject.id = res[0].id;
+                subject.face_id = res[0].face_id;
+                subject.profile = res[0].profile;
+              }else{
+                addCustomer(subject.face_id).done(function(resp){
+                  subject.id = resp.id;
+                  subject.face_id = resp.face_id;
+                  subject.profile = resp.profile;
+                });
+              }
+            });
+
+            faceEnroll(image, subject.face_id);
         }
         else{
             console.log("not match")
@@ -62,6 +86,72 @@ function faceEnroll(image,id=null){
         contentType:"application/json"
     }).done(function(response){
         console.log(response)
-        //Here need to bind the faceid to current
+
+        if(response.face_id){
+          subject.face_id=response.face_id;
+            //Here need to bind the faceid to current
+          checkFace(subject.face_id).done(function(res){
+
+            if(res.length>0){
+              // Customer Exist
+              subject.id = res[0].id;
+              subject.face_id = res[0].face_id;
+              subject.profile = res[0].profile;
+            }else{
+              // New Customer add to Database
+              addCustomer(subject.face_id).done(function(resp){
+                subject.id = resp.id;
+                subject.face_id = resp.face_id;
+                subject.profile = resp.profile;
+              });
+            }
+
+          });
+        }
     });
+}
+
+// Database API
+function addCustomer(face_id, profile = {}){
+  var payload = {
+    face_id:face_id,
+    profile:profile
+  };
+
+  return $.ajax("http://localhost:3000/customer", {
+    type:"POST",
+    data:JSON.stringify(payload),
+    dataType: "json",
+    contentType:"application/json"
+  })
+}
+
+function editCustomer(id, face_id, profile = {}){
+  var payload = {
+    face_id:face_id,
+    profile:profile
+  };
+
+  return $.ajax("http://localhost:3000/customer/"+id, {
+    type:"PUT",
+    data:JSON.stringify(payload),
+    dataType: "json",
+    contentType:"application/json"
+  })
+}
+
+function getCustomer(id){
+  return $.ajax("http://localhost:3000/customer/"+id, {
+    type:"GET",
+    dataType: "json",
+    contentType:"application/json"
+  });
+}
+
+function checkFace(face_id){
+  return $.ajax("http://localhost:3000/post?face_id_like="+id, {
+    type:"GET",
+    dataType: "json",
+    contentType:"application/json"
+  });
 }

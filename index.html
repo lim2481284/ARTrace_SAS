@@ -43,6 +43,7 @@
     <button style="z-Index:3" class='up'> Up </button>
     <button style="z-Index:3" class='down'> Down </button>
     <button style="z-Index:3" onclick="toggleFullScreen()"> Fullscreen </button>
+    <button style="z-Index:3" class='capture'> Capture </button>
 
     <div class='displayBox' style="z-Index:2">
         <!--<video id="video" ></video>-->
@@ -102,13 +103,13 @@
   			console.log(e)
   		}
 
-  		$(button).click(function(){
+  		$(".capture").click(function(){
   			var canvas=document.createElement('canvas');
   			canvas.width = video.width;
   			canvas.height = video.height;
   			canvas.getContext("2d").drawImage(video, 0, 0,canvas.width, canvas.height);
   			var img = canvas.toDataURL("image/jpeg",1.0);
-  			$(displayImage).attr("src",img)
+  			//$(displayImage).attr("src",img)
   			//console.log(img)
   			faceReco(img);
   			//viewGallery();
