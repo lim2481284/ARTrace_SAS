@@ -53,6 +53,7 @@ $(document).ready(function(){
 	});
 
 	$('.start-bg').click(function(){
+		toggleFullScreen();
 		$(this).fadeOut(1500);
 	});
 

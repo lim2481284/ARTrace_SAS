@@ -6,16 +6,19 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="manifest.json">
-    
+
     <!-- Main script & style -->
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/danml.js"></script>
-    <script src="assets/js/annyang.js"></script>
-    <script src="assets/js/compatibility.js"></script>
-    <script src="assets/js/smoother.js"></script>
-    <script src="assets/js/objectdetect.js"></script>
-    <script src="assets/js/objectdetect.frontalface_alt.js"></script>
-    <script src="assets/js/objectdetect.handfist.js"></script>
+    <script src="face-recog/js/libs/model_pca_20_svm.js"></script>
+    <script src="face-recog/js/emotionDetector.js"></script>
+    <script src="face-recog/js/emotionModel.js"></script>
+    <script src="face-recog/js/clmtrackr.js"></script>
+    <script src="face-recog/js/lzstring.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="face-recog/js/faceDetection.js"></script>
+    <script src="face-recog/js/faceRecognition.js"></script>
+    <script src="face-recog/js/libs/d3.min.js"></script>
+    <script src="face-recog/js/libs/utils.js"></script>
+
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -30,11 +33,18 @@
         <img src='assets/image/landing.png'/>
     </div>
     <!-- <img class='test' src='assets/image/test.jpeg'/>-->
-    <button class='up'> Up </button>
-    <button class='down'> Down </button>
-    <button onclick="toggleFullScreen()"> Fullscreen </button>
     <image src='assets/image/gradient.png' class='gradient'/>
-    <div class='displayBox'>
+
+    <div style="position: fixed;top:0; left:0; width:100vw;height:100vh;">
+      <video id="video" width="400" height="300" autoplay loop style="position: absolute;object-fit: fill;z-index:0"></video>
+      <canvas id="drawCanvas" width="400" height="300" style="position: absolute;z-index:1"></canvas>
+    </div>
+
+    <button style="z-Index:3" class='up'> Up </button>
+    <button style="z-Index:3" class='down'> Down </button>
+    <button style="z-Index:3" onclick="toggleFullScreen()"> Fullscreen </button>
+
+    <div class='displayBox' style="z-Index:2">
         <!--<video id="video" ></video>-->
         <div id='infoDisplay'>
             <ul>
@@ -68,6 +78,43 @@
   </body>
 
   <script>
+    var w = screen.width || window.innerWidth
+  	|| document.documentElement.clientWidth
+  	|| document.body.clientWidth;
+
+  	var h = screen.height || window.innerHeight
+  	|| document.documentElement.clientHeight
+  	|| document.body.clientHeight;
+
+  	$(document).ready(function(){
+  		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+  	    if (navigator.getUserMedia) {
+  	      navigator.getUserMedia({video: true}, handleVideo, videoError);
+  	    }
+
+  		function handleVideo(stream) {
+  			video.srcObject = stream;
+  		}
+
+  		function videoError(e) {
+  			console.log("Error handling video");
+  			console.log(e)
+  		}
+
+  		$(button).click(function(){
+  			var canvas=document.createElement('canvas');
+  			canvas.width = video.width;
+  			canvas.height = video.height;
+  			canvas.getContext("2d").drawImage(video, 0, 0,canvas.width, canvas.height);
+  			var img = canvas.toDataURL("image/jpeg",1.0);
+  			$(displayImage).attr("src",img)
+  			//console.log(img)
+  			faceReco(img);
+  			//viewGallery();
+  		})
+  	})
+
     function toggleFullScreen() {
       var doc = window.document;
       var docEl = doc.documentElement;
