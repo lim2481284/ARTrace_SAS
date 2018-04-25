@@ -118,7 +118,7 @@ function addCustomer(face_id, profile = {}){
     profile:profile
   };
 
-  return $.ajax("http://localhost:3000/customer", {
+  return $.ajax("http://sas.windworkshop.my/customer", {
     type:"POST",
     data:JSON.stringify(payload),
     dataType: "json",
@@ -132,7 +132,7 @@ function editCustomer(id, face_id, profile = {}){
     profile:profile
   };
 
-  return $.ajax("http://localhost:3000/customer/"+id, {
+  return $.ajax("http://sas.windworkshop.my/customer/"+id, {
     type:"PUT",
     data:JSON.stringify(payload),
     dataType: "json",
@@ -141,7 +141,7 @@ function editCustomer(id, face_id, profile = {}){
 }
 
 function getCustomer(id){
-  return $.ajax("http://localhost:3000/customer/"+id, {
+  return $.ajax("http://sas.windworkshop.my/customer/"+id, {
     type:"GET",
     dataType: "json",
     contentType:"application/json"
@@ -149,7 +149,7 @@ function getCustomer(id){
 }
 
 function checkFace(face_id){
-  return $.ajax("http://localhost:3000/post?face_id_like="+id, {
+  return $.ajax("http://sas.windworkshop.my/post?face_id_like="+id, {
     type:"GET",
     dataType: "json",
     contentType:"application/json"
