@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>AR Trace</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="manifest.json">
+    
     <!-- Main script & style -->
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/danml.js"></script>
@@ -22,13 +25,14 @@
 
 </head>
 
-<body>
+<body id=body>
     <div class='start-bg'>
         <img src='assets/image/landing.png'/>
     </div>
     <!-- <img class='test' src='assets/image/test.jpeg'/>-->
     <button class='up'> Up </button>
     <button class='down'> Down </button>
+    <button onclick="toggleFullScreen()"> Fullscreen </button>
     <image src='assets/image/gradient.png' class='gradient'/>
     <div class='displayBox'>
         <!--<video id="video" ></video>-->
@@ -43,10 +47,12 @@
                 </li>
             </ul>
         </div>
+
     </div>
+
     <section>
-        <image class='line' src='assets/image/line.png'/>
         <div class="nav ">
+            <image class='line' src='assets/image/line.png'/>
             <ul class="radial-nav expanded">
                 <li data-content="js"><a href="#"><image src='assets/image/record.png' class='icon icon-3 ' c='3'/></a></li>
                 <li data-content="css"><a href="#"><image src='assets/image/progress.png' class='icon icon-4' c='4'/></a></li>
@@ -58,5 +64,23 @@
                 <li data-content="gulp"><a href="#"><image src='assets/image/credit.png' class='icon icon-2' c='2'/></a></li>
             </ul>
         </div>
-    </body>
+    </section>
+  </body>
+
+  <script>
+    function toggleFullScreen() {
+      var doc = window.document;
+      var docEl = doc.documentElement;
+
+      var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+      var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+      if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+        requestFullScreen.call(docEl);
+      }
+      else {
+        cancelFullScreen.call(doc);
+      }
+    }
+  </script>
 </html>

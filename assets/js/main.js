@@ -6,7 +6,7 @@ window.onload = function() {
 			detector,
 			detectorhand;
 
-		try {
+	/*try {
 			compatibility.getUserMedia({video: true}, function(stream) {
 				try {
 					video.src = compatibility.URL.createObjectURL(stream);
@@ -19,7 +19,59 @@ window.onload = function() {
 			});
 		} catch (error) {
 			alert(error);
-		}
+		}*/
+
+		/*let SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+		if (!("SpeechRecognition" in window || "webkitSpeechRecognition" in window )) {
+			//upgrade();
+			alert("SpeechRecognition not Available");
+		} else {
+			let speechrecognition = webkitSpeechRecognition || SpeechRecognition;
+			var recognition = new speechrecognition();
+			recognition.continuous = false;
+			recognition.interimResults = false;
+
+			recognition.onstart = function() { }
+			recognition.onresult = function(event) { }
+			recognition.onerror = function(event) { }
+			recognition.onend = function() { recognition.start(); }
+
+			final_transcript = '';
+			recognition.start();
+
+			recognition.onresult = function(event) {
+				var interim_transcript = '';
+				final_transcript = '';
+
+				for (var i = event.resultIndex; i < event.results.length; ++i) {
+					if (event.results[i].isFinal) {
+						//final_transcript += event.results[i][0].transcript;
+						//console.log(event.results[i][0].transcript);
+						final_transcript = event.results[i][0].transcript;
+					} else {
+						interim_transcript += event.results[i][0].transcript;
+						//console.log(event.results[i][0].transcript);
+					}
+				}
+
+				alert(final_transcript.toLowerCase());
+				if(final_transcript.toLowerCase().match(/(\bnext\b|\bmax\b|\bmix\b)/) ){
+					up();
+				}else if(final_transcript.toLowerCase().match(/(\bprevious\b|\bback\b)/)){
+					down();
+				}else if(final_transcript.toLowerCase().match(/(\bloan\b)/)){
+					// send keywords
+				}else if(final_transcript.toLowerCase().match(/(\bhello sir\b)/)){
+					// start session
+				}else if(final_transcript.toLowerCase().match(/(\bgoodbye\b)/)){
+					// end session
+				}
+
+				//final_transcript = capitalize(final_transcript);
+				//final_span.innerHTML = linebreak(final_transcript);
+				//interim_span.innerHTML = linebreak(interim_transcript);
+			};
+		}*/
 
 		function play() {
 
@@ -232,7 +284,7 @@ $(document).ready(function() {
 var rotation = 0;
 function up(){
 	rotation+=45;
-	$('.nav').css({'transform' : 'rotate('+rotation+'deg)'});
+	$('.radial-nav').css({'transform' : 'rotate('+rotation+'deg)'});
 	var c = $('.active-icon').attr('c');
 	$('.active-icon').removeClass('active-icon');
 	if(c==1){
@@ -241,7 +293,7 @@ function up(){
 	else {
 		c--;
 	}
-	if(c==1){
+	/*if(c==1){
 		$(".line").css('right','21px');
 		$(".line").css('top','234px');
 	}
@@ -272,7 +324,7 @@ function up(){
 	if(c==2){
 		$(".line").css('right','35px');
 		$(".line").css('top','229px');
-	}
+	}*/
 	$('.icon-'+c).addClass('active-icon');
 	$( "#infoDisplay" ).removeClass('swipeDown');
 	$( "#infoDisplay" ).removeClass('swipeUp');
@@ -285,7 +337,7 @@ function up(){
 
 function down(){
 	rotation-=45;
-	$('.nav').css({'transform' : 'rotate('+rotation+'deg)'});
+	$('.radial-nav').css({'transform' : 'rotate('+rotation+'deg)'});
 	var c = $('.active-icon').attr('c');
 	$('.active-icon').removeClass('active-icon');
 	if(c==8){
@@ -294,7 +346,7 @@ function down(){
 	else {
 		c++;
 	}
-	if(c==1){
+	/*if(c==1){
 		$(".line").css('right','21px');
 		$(".line").css('top','234px');
 	}
@@ -325,7 +377,7 @@ function down(){
 	if(c==2){
 		$(".line").css('right','35px');
 		$(".line").css('top','229px');
-	}
+	}*/
 	$('.icon-'+c).addClass('active-icon');
 	$( "#infoDisplay" ).removeClass('swipeDown');
 	$( "#infoDisplay" ).removeClass('swipeUp');
@@ -345,7 +397,7 @@ $(document).ready(function(){
 		down();
 	});
 
-	if (annyang) {
+	/*if (annyang) {
 	  // Let's define a command.
 	  var commands = {
 		'next': function() {console.log("UP"); up() },
@@ -355,7 +407,7 @@ $(document).ready(function(){
 	  annyang.addCommands(commands);
 	  // Start listening.
 	  annyang.start({continuous:true,});
-	}
+	}*/
 
 	$('.start-bg').click(function(){
 		$(this).fadeOut(1500);
