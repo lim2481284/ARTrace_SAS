@@ -27,15 +27,7 @@ $(document).ready(function(){
 	}
 
 	$(".capture").click(function(){
-		var canvas=document.createElement('canvas');
-		canvas.width = video.width;
-		canvas.height = video.height;
-		canvas.getContext("2d").drawImage(video, 0, 0,canvas.width, canvas.height);
-		var img = canvas.toDataURL("image/jpeg",1.0);
-		//$(displayImage).attr("src",img)
-		//console.log(img)
-		faceReco(img);
-		//viewGallery();
+		capture();
 	})
 })
 
@@ -62,8 +54,8 @@ function up(){
 	var c = $('.active-icon').attr('c');
 	$('.active-icon').removeClass('active-icon');
 
-	$( ".infoDisplay_"+c ).removeClass('swipeDown');
-	$( ".infoDisplay_"+c ).removeClass('swipeUp');
+	$( ".infoDisplay" ).removeClass('swipeDown');
+	$( ".infoDisplay" ).removeClass('swipeUp');
 
 	if(c==1){
 		c=8;
@@ -86,8 +78,8 @@ function down(){
 	var c = $('.active-icon').attr('c');
 	$('.active-icon').removeClass('active-icon');
 
-	$( ".infoDisplay_"+c ).removeClass('swipeDown');
-	$( ".infoDisplay_"+c ).removeClass('swipeUp');
+	$( ".infoDisplay").removeClass('swipeDown');
+	$( ".infoDisplay" ).removeClass('swipeUp');
 
 	if(c==8){
 		c=1;
@@ -105,13 +97,42 @@ function down(){
 	  }, 200);
 }
 
+function capture(){
+	if(!recording){
+		recording = true;
+		var canvas=document.createElement('canvas');
+		canvas.width = video.width;
+		canvas.height = video.height;
+		canvas.getContext("2d").drawImage(video, 0, 0,canvas.width, canvas.height);
+		var img = canvas.toDataURL("image/jpeg",1.0);
+		//$(displayImage).attr("src",img)
+		//console.log(img)
+		recognizing = true;
+		faceReco(img);
+		//viewGallery();
+	}else{
+		recording = false;
+		currentMeeting_id = null;
+	}
+
+}
+
+let recording = false;
+let recognizing = false;
 let key = false;
 
 $(document).ready(function(){
 
 	$(window).on("keydown",function(e){
 		key = e.keyCode;
-		console.log(e);
+		//console.log(e);
+
+		if (key === 177)
+			up();
+		if(key === 176)
+			down();
+		if(key === 179)
+			capture();
 	})
 
 	$(window).on("keyup",function(e){

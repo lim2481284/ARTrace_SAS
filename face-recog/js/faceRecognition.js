@@ -26,6 +26,7 @@ function faceReco(image){
         contentType:"application/json"
     }).done(function(response){
         console.log(response);
+        recognizing = false;
         if (response.images[0].transaction.status=="success"){
             console.log("Face matches")
             subject.face_id=response.images[0].transaction.subject_id;
@@ -130,7 +131,7 @@ function addCustomer(face_id, profile = {
   "age":51,
   "occupation":2,
   "spending_history":1
-}, emotion = []){
+}){
 
   var payload = {
     face_id:face_id,
@@ -179,8 +180,140 @@ function checkFace(face_id){
   });
 }
 
+function addMeeting(){
+
+  var payload = {
+    customer_id:subject.id,
+    timestamp:Math.round(new Date()/1000)
+  };
+
+  return $.ajax(db_url+"/meetings", {
+    type:"POST",
+    data:JSON.stringify(payload),
+    dataType: "json",
+    contentType:"application/json"
+  })
+}
+
+function addEmotion(meeting_id, score){
+
+  var payload = {
+    meeting_id:meeting_id,
+    timestamp:Math.round(new Date()/1000)
+  };
+
+  return $.ajax(db_url+"/emotions", {
+    type:"POST",
+    data:JSON.stringify(payload),
+    dataType: "json",
+    contentType:"application/json"
+  })
+}
+
+function getEmotions(meeting_id){
+  return $.ajax(db_url+"/emotions?meeting_id_like="+meeting_id, {
+    type:"GET",
+    dataType: "json",
+    contentType:"application/json"
+  });
+}
+
+function getCustomerMeetings(){
+  return $.ajax(db_url+"/meetings?customer_id_likes="+subject.id, {
+    type:"GET",
+    dataType: "json",
+    contentType:"application/json"
+  });
+}
+
 // Recommendation formula
-function getRecommendation(){
+function recommendationAlgorithm(accountBalance,ctos,income,age,occupation,spendingHistory){
+	/*
+		l= loan
+		fd= fixed deposit
+		f= funds
+		cc= credit cards
+		i= insurance
+	*/
+	var l=0,fd=0,f=0,cc=0,i=0;
+
+	if (accountBalance>=10000){
+		f+=3;
+		fd+=2
+		cc+=2
+	}
+
+	else if (accountBalance<3000){
+		l+=3;
+	}
+
+	//ctos is between 300 to 850
+	if (ctos>697 && (houseLoan===null || carLoan===null)){
+		cc+=3;
+		l+=5;
+	}
+
+	else if (ctos<650){
+		fd+=2;
+		cc+=1
+	}
+
+	if (income>=5000){
+		if (ctos<650){
+			cc+=2;
+		}
+
+		if (accountBalance<=10000){
+			fd+=2;
+			f+=3;
+			i+=3
+		}
+	}
+
+	if (age<=25 || age>=40){
+		i+=3
+
+		if (age<=25){
+			f+=1;
+		}
+
+		if (age>=40 && accountBalance>10000){
+			fd+=2;
+		}
+	}
+
+	switch (occupation){
+		case 1:
+			break;
+		case 2:
+			i+=1;
+		case 3:
+			i+=2;
+		case 4:
+			i+=3;
+		case 5:
+			i+=4;
+	}
+
+
+	if (spendingHistory===0){
+		cc+=3
+	}
+
+  /*
+		l= loan
+		fd= fixed deposit
+		f= funds
+		cc= credit cards
+		i= insurance
+	*/
+  var sort = [{name:"Loan",val:l},{name:"Fixed Deposit",val:fd},{name:"Funds",val:f},
+    {name:"Credit Cards",val:cc},{name:"Insurance",val:i}].sort(function(a, b){
+    return b.val - a.val;
+  })
+
+  return (sort[0]);
+
 }
 
 function updateInfo(){
@@ -192,6 +325,13 @@ function updateInfo(){
   $(".info_ctos").html(subject.profile.CTOS);
   $(".info_spending_history").html(subject.profile.spending_history?"YES":"NO");
   //$(".info_name").html(subject.profile.name);
+  var recommendation = recommendationAlgorithm( subject.profile.acc_balance, subject.profile.CTOS,
+    subject.profile.income, subject.profile.age, subject.profile.occupation, subject.profile.spending_history);
+  $(".info_recommendation").html(recommendation.name);
+
+  addMeeting().done(function(resp){
+    currentMeeting_id = resp.id;
+  });
 
   $(".infoDisplay_1").addClass("swipeDown");
 }
