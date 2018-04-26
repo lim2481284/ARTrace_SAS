@@ -35,9 +35,13 @@
     <!-- <img class='test' src='assets/image/test.jpeg'/>-->
     <image src='assets/image/gradient.png' class='gradient'/>
 
-    <div style="position: fixed;top:0; left:0; width:100vw;height:100vh;">
+    <div style="position: fixed;top:0; left:0; width:50vw;height:100vh;">
       <video id="video" width="400" height="300" autoplay loop style="position: absolute;object-fit: fill;z-index:0"></video>
       <canvas id="drawCanvas" width="400" height="300" style="position: absolute;z-index:1"></canvas>
+    </div>
+
+    <div style="position: fixed;top:0; left:50vw; width:50vw;height:100vh;">
+      <video id="video2" width="400" height="300" autoplay loop style="position: absolute;object-fit: fill;z-index:0"></video>
     </div>
 
     <button style="z-Index:3" class='up'> Up </button>
@@ -46,7 +50,6 @@
     <button style="z-Index:3" class='capture'> Capture </button>
 
     <div class='displayBox' style="z-Index:2">
-        <!--<video id="video" ></video>-->
         <div class='infoDisplay infoDisplay_1'>
             <ul>
                 <li class='begin'>CUSTOMER DETAILS</li>
@@ -112,59 +115,6 @@
             </ul>
         </div>
     </section>
+
   </body>
-
-  <script>
-    var w = screen.width || window.innerWidth
-  	|| document.documentElement.clientWidth
-  	|| document.body.clientWidth;
-
-  	var h = screen.height || window.innerHeight
-  	|| document.documentElement.clientHeight
-  	|| document.body.clientHeight;
-
-  	$(document).ready(function(){
-  		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-
-  	    if (navigator.getUserMedia) {
-  	      navigator.getUserMedia({video: true}, handleVideo, videoError);
-  	    }
-
-  		function handleVideo(stream) {
-  			video.srcObject = stream;
-  		}
-
-  		function videoError(e) {
-  			console.log("Error handling video");
-  			console.log(e)
-  		}
-
-  		$(".capture").click(function(){
-  			var canvas=document.createElement('canvas');
-  			canvas.width = video.width;
-  			canvas.height = video.height;
-  			canvas.getContext("2d").drawImage(video, 0, 0,canvas.width, canvas.height);
-  			var img = canvas.toDataURL("image/jpeg",1.0);
-  			//$(displayImage).attr("src",img)
-  			//console.log(img)
-  			faceReco(img);
-  			//viewGallery();
-  		})
-  	})
-
-    function toggleFullScreen() {
-      var doc = window.document;
-      var docEl = doc.documentElement;
-
-      var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-      var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
-
-      if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
-        requestFullScreen.call(docEl);
-      }
-      else {
-        cancelFullScreen.call(doc);
-      }
-    }
-  </script>
 </html>

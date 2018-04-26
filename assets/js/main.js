@@ -1,3 +1,60 @@
+// Video Stream
+var w = screen.width || window.innerWidth
+|| document.documentElement.clientWidth
+|| document.body.clientWidth;
+
+var h = screen.height || window.innerHeight
+|| document.documentElement.clientHeight
+|| document.body.clientHeight;
+
+$(document).ready(function(){
+	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+	if (navigator.getUserMedia) {
+		navigator.getUserMedia({video: true}, handleVideo, videoError);
+	}
+
+	function handleVideo(stream) {
+		video.srcObject = stream;
+		video2.width = w/2;
+		video2.height = h;
+		video2.srcObject = stream;
+	}
+
+	function videoError(e) {
+		console.log("Error handling video");
+		console.log(e)
+	}
+
+	$(".capture").click(function(){
+		var canvas=document.createElement('canvas');
+		canvas.width = video.width;
+		canvas.height = video.height;
+		canvas.getContext("2d").drawImage(video, 0, 0,canvas.width, canvas.height);
+		var img = canvas.toDataURL("image/jpeg",1.0);
+		//$(displayImage).attr("src",img)
+		//console.log(img)
+		faceReco(img);
+		//viewGallery();
+	})
+})
+
+function toggleFullScreen() {
+	var doc = window.document;
+	var docEl = doc.documentElement;
+
+	var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+	var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+	if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+		requestFullScreen.call(docEl);
+	}
+	else {
+		cancelFullScreen.call(doc);
+	}
+}
+
+// Rotation
 let rotation = 0;
 function up(){
 	rotation+=45;
