@@ -76,14 +76,17 @@ $(document).ready(function(){
 			currentScore = emotionScore;
 			// add to db if in session
 			if(recording && currentMeeting_id){
-				addEmotion(currentMeeting_id, emotionScore);
+				addEmotion(currentMeeting_id, emotionScore).done(function(res){
+					console.log(res);
+				});
 			}
 
 		}
 		//console.log(emotionScore)
 	}
 
-	let currentScore = 0;
-	let currentMeeting_id = null;
 	startVideo()
 })
+
+let currentScore = 0;
+let currentMeeting_id = null;

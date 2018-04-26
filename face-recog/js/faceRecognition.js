@@ -119,7 +119,7 @@ function faceEnroll(image,id=null){
 }
 
 // Database API
-let db_url = "http://localhost:3000"//"http://sas.windworkshop.my";
+let db_url = "http://sas.windworkshop.my"//"http://localhost:3000";
 
 function addCustomer(face_id, profile = {
   "name":"New Customer",
