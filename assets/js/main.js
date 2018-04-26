@@ -105,7 +105,18 @@ function down(){
 	  }, 200);
 }
 
+let key = false;
+
 $(document).ready(function(){
+
+	$(window).on("keydown",function(e){
+		key = e.keyCode;
+		console.log(e);
+	})
+
+	$(window).on("keyup",function(e){
+		key = false;
+	})
 
 	$('.up').click(function(){
 		up();

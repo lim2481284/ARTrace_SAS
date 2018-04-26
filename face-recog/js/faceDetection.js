@@ -45,7 +45,7 @@ $(document).ready(function(){
 		ctracker.draw(canvasInput);
 		var cp = ctracker.getCurrentParameters();
 		var allEmotion = ec.meanPredict(cp);
-		if (cp){
+		if (cp && allEmotion){
 			calculateEmotionScore(allEmotion)
 		}
 
@@ -69,7 +69,7 @@ $(document).ready(function(){
 		else if (strongestEmotion==allEmotion[4].value || strongestEmotion==allEmotion[5].value){
 			emotionScore=0.5+(0.5*(1-allEmotion[0].value))
 		}
-		console.log(emotionScore)
+		//console.log(emotionScore)
 	}
 
 	startVideo()
