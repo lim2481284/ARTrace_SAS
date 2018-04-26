@@ -126,12 +126,11 @@ $(document).ready(function(){
 	$(window).on("keydown",function(e){
 		key = e.keyCode;
 		//console.log(e);
-
-		if (key === 177)
+		if (key === 177 || e.key === "MediaTrackPrevious")
 			up();
-		if(key === 176)
+		if(key === 176 || e.key === "MediaTrackNext")
 			down();
-		if(key === 179)
+		if(key === 179 || e.key === "MediaPlayPause")
 			capture();
 	})
 
