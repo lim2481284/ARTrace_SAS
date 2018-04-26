@@ -4,6 +4,10 @@ function up(){
 	$('.radial-nav').css({'transform' : 'rotate('+rotation+'deg)'});
 	var c = $('.active-icon').attr('c');
 	$('.active-icon').removeClass('active-icon');
+
+	$( ".infoDisplay_"+c ).removeClass('swipeDown');
+	$( ".infoDisplay_"+c ).removeClass('swipeUp');
+
 	if(c==1){
 		c=8;
 	}
@@ -12,12 +16,10 @@ function up(){
 	}
 
 	$('.icon-'+c).addClass('active-icon');
-	$( "#infoDisplay" ).removeClass('swipeDown');
-	$( "#infoDisplay" ).removeClass('swipeUp');
 	setTimeout(
 	  function()
 	  {
-			$( "#infoDisplay" ).delay( 1000 ).addClass('swipeDown');
+			$( ".infoDisplay_"+c ).delay( 1000 ).addClass('swipeDown');
 	  }, 200);
 }
 
@@ -26,6 +28,10 @@ function down(){
 	$('.radial-nav').css({'transform' : 'rotate('+rotation+'deg)'});
 	var c = $('.active-icon').attr('c');
 	$('.active-icon').removeClass('active-icon');
+
+	$( ".infoDisplay_"+c ).removeClass('swipeDown');
+	$( ".infoDisplay_"+c ).removeClass('swipeUp');
+
 	if(c==8){
 		c=1;
 	}
@@ -34,12 +40,11 @@ function down(){
 	}
 
 	$('.icon-'+c).addClass('active-icon');
-	$( "#infoDisplay" ).removeClass('swipeDown');
-	$( "#infoDisplay" ).removeClass('swipeUp');
+
 	setTimeout(
 	  function()
 	  {
-			$( "#infoDisplay" ).delay( 1000 ).addClass('swipeDown');
+			$( ".infoDisplay_"+c ).delay( 1000 ).addClass('swipeDown');
 	  }, 200);
 }
 

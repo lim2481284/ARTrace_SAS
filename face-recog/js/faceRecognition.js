@@ -186,5 +186,12 @@ function getRecommendation(){
 function updateInfo(){
   $(".info_name").html(subject.profile.name);
   $(".info_age").html(subject.profile.age);
+  $(".info_occupation").html(subject.profile.occupation);
+  $(".info_income").html("RM "+subject.profile.income);
+  $(".info_account_balance").html("RM "+subject.profile.acc_balance);
+  $(".info_ctos").html(subject.profile.CTOS);
+  $(".info_spending_history").html(subject.profile.spending_history?"YES":"NO");
   //$(".info_name").html(subject.profile.name);
+
+  $(".infoDisplay_1").addClass("swipeDown");
 }
