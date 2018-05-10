@@ -199,6 +199,7 @@ function addEmotion(meeting_id, score){
 
   var payload = {
     meeting_id:meeting_id,
+    score:score,
     timestamp:Math.round(new Date()/1000)
   };
 

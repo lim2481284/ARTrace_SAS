@@ -1,0 +1,66 @@
+$.get(api.url+'customer',{face_id:id}).done(function(data){
+      if(data.length>0){
+        customer_id = data[0].id;
+        $('.Success').fadeOut();
+        $('.SuccessMatch').fadeIn();
+        $('.loader').fadeOut();
+
+        api.getUserOrders(customer_id,function(data){
+          var items = [];
+
+          for(var i =0; i<data.length; i++){
+            data[i].products.map(function(o){
+              var product = getProductById(o.product_id);
+              items.push('<tr>\
+                <td> '+product.name+' </td>\
+                <td> '+parseFloat(product.price*parseInt(o.quantity,10)).toFixed(2)+' </td>\
+                <td> '+o.quantity+' </td>\
+              </tr>');
+            });
+          }
+
+          items.unshift("<tr class='rowHeader'>\
+            <th> Item Name </th>\
+            <th> Price (RM) </th>\
+            <th> Qty </th>\
+          </tr>");
+
+          //alert(JSON.stringify(data) );
+          $('.itemList2').html(items);
+        });
+
+      }else{
+        //if no user face id found create customer
+        $.post(api.url+'customer',{face_id:id}).done(function(data){
+          console.log(data);
+          customer_id = data.id;
+          $('.Success').fadeOut();
+          $('.Register').fadeIn();
+          $('.loader').fadeOut();
+
+          api.getUserOrders(customer_id,function(data){
+            var items = [];
+
+            for(var i =0; i<data.length; i++){
+              data[i].products.map(function(o){
+          			var product = getProductById(o.product_id);
+          			items.push('<tr>\
+          				<td> '+product.name+' </td>\
+          				<td> '+parseFloat(product.price*parseInt(o.quantity,10)).toFixed(2)+' </td>\
+                  <td> '+o.quantity+' </td>\
+          			</tr>');
+          		});
+            }
+
+            items.unshift("<tr class='rowHeader'>\
+              <th> Item Name </th>\
+              <th> Price (RM) </th>\
+              <th> Qty </th>\
+            </tr>");
+
+            //alert(JSON.stringify(data) );
+            $('.itemList2').html(items);
+          });
+
+        });
+      }
