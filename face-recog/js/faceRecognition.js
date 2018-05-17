@@ -184,11 +184,28 @@ function addMeeting(){
 
   var payload = {
     customer_id:subject.id,
+    timelength: 0,
     timestamp:Math.round(new Date()/1000)
   };
 
   return $.ajax(db_url+"/meetings", {
     type:"POST",
+    data:JSON.stringify(payload),
+    dataType: "json",
+    contentType:"application/json"
+  })
+}
+
+function editMeeting(timelength){
+
+  var payload = {
+    customer_id:currentMeeting.customer_id,
+    timelength: timelength,
+    timestamp:currentMeeting.timestamp
+  };
+
+  return $.ajax(db_url+"/meetings", {
+    type:"PUT",
     data:JSON.stringify(payload),
     dataType: "json",
     contentType:"application/json"
@@ -332,6 +349,7 @@ function updateInfo(){
 
   addMeeting().done(function(resp){
     currentMeeting_id = resp.id;
+    currentMeeting = resp;
   });
 
   $(".infoDisplay_1").addClass("swipeDown");

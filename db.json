@@ -1,0 +1,569 @@
+{
+  "customer": [
+    {
+      "face_id": "rhmfm8C10E5s59JhHQXiOwhJgO9iQDFv",
+      "id": 1,
+      "profile": {
+        "name": "Customer 1",
+        "house_loan": null,
+        "car_loan": null,
+        "acc_balance": 10000,
+        "CTOS": 679,
+        "income": 3000,
+        "age": 21,
+        "occupation": 2,
+        "spending_history": 1
+      }
+    },
+    {
+      "face_id": "c1mNcsUCCcsspMLGUtHgQRZiokNu76vW",
+      "id": 2,
+      "profile": {
+        "name": "Customer 2",
+        "house_loan": null,
+        "car_loan": "2018-03-31 09:57:00",
+        "acc_balance": 2000,
+        "CTOS": 600,
+        "income": 5000,
+        "age": 2,
+        "occupation": 1,
+        "spending_history": 1
+      }
+    },
+    {
+      "face_id": "NsFvPZVc7ACf5DlCh0q5JgDGKfYS33W2",
+      "id": 3,
+      "profile": {
+        "name": "Customer 3",
+        "house_loan": null,
+        "car_loan": null,
+        "acc_balance": 5000,
+        "CTOS": 400,
+        "income": 5000,
+        "age": 21,
+        "occupation": 2,
+        "spending_history": 1
+      }
+    },
+    {
+      "face_id": "0ecfb95705974a478ab",
+      "profile": {
+        "name": "Customer 4",
+        "house_loan": "2018-03-31 09:57:00",
+        "car_loan": null,
+        "acc_balance": 100000,
+        "CTOS": 500,
+        "income": 5000,
+        "age": 51,
+        "occupation": 2,
+        "spending_history": 1
+      },
+      "id": 4
+    },
+    {
+      "face_id": "f02ba3c07f0d4f9a83b",
+      "profile": {
+        "name": "New Customer",
+        "house_loan": "2018-03-31 09:57:00",
+        "car_loan": null,
+        "acc_balance": 20000,
+        "CTOS": 600,
+        "income": 5000,
+        "age": 51,
+        "occupation": 2,
+        "spending_history": 1
+      },
+      "id": 5
+    }
+  ],
+  "meetings": [
+    {
+      "customer_id": 1,
+      "timestamp": 1526190862,
+      "timelength":21,
+      "id": 1
+    },
+    {
+      "customer_id": 2,
+      "timestamp": 1526195073,
+      "timelength":1474,
+      "id": 2
+    },
+    {
+      "customer_id": 3,
+      "timestamp": 1526195102,
+      "timelength":0,
+      "id": 3
+    },
+    {
+      "customer_id": 3,
+      "timestamp": 1526195103,
+      "timelength": 0,
+      "id": 4
+    },
+    {
+      "customer_id": 3,
+      "timestamp": 1526195104,
+      "timelength": 0,
+      "id": 5
+    },
+    {
+      "customer_id": 3,
+      "timestamp": 1526195479,
+      "timelength":0,
+      "id": 6
+    }
+  ],
+  "emotions": [
+    {
+      "meeting_id": 1,
+      "score": 0.9295316132051032,
+      "timestamp": 1526190863,
+      "id": 1
+    },
+    {
+      "meeting_id": 1,
+      "score": 0.37229957997732877,
+      "timestamp": 1526190864,
+      "id": 2
+    },
+    {
+      "meeting_id": 1,
+      "score": 0.9379999532116585,
+      "timestamp": 1526190866,
+      "id": 3
+    },
+    {
+      "meeting_id": 1,
+      "score": 0.4185881270725927,
+      "timestamp": 1526190867,
+      "id": 4
+    },
+    {
+      "meeting_id": 1,
+      "score": 0.31271621033972663,
+      "timestamp": 1526190871,
+      "id": 5
+    },
+    {
+      "meeting_id": 1,
+      "score": 0.19306742595063187,
+      "timestamp": 1526190872,
+      "id": 6
+    },
+    {
+      "meeting_id": 1,
+      "score": 0.09012876260278069,
+      "timestamp": 1526190873,
+      "id": 7
+    },
+    {
+      "meeting_id": 1,
+      "score": 0.1987349087022618,
+      "timestamp": 1526190883,
+      "id": 8
+    },
+    {
+      "meeting_id": 1,
+      "score": 0.3424346303155705,
+      "timestamp": 1526190884,
+      "id": 9
+    },
+    {
+      "meeting_id": 1,
+      "score": 0.9643427049798261,
+      "timestamp": 1526190884,
+      "id": 10
+    },
+    {
+      "meeting_id": 1,
+      "score": 0.446870417121045,
+      "timestamp": 1526190884,
+      "id": 11
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.435703051729905,
+      "timestamp": 1526195074,
+      "id": 12
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9548020629356064,
+      "timestamp": 1526195075,
+      "id": 13
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.42622872474210827,
+      "timestamp": 1526195076,
+      "id": 14
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9411500490500097,
+      "timestamp": 1526195077,
+      "id": 15
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4262128143520692,
+      "timestamp": 1526195078,
+      "id": 16
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9554980224684951,
+      "timestamp": 1526195080,
+      "id": 17
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4729875148539392,
+      "timestamp": 1526195090,
+      "id": 18
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.36168236057372916,
+      "timestamp": 1526195095,
+      "id": 19
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.46493241609348857,
+      "timestamp": 1526195104,
+      "id": 20
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9957687801835,
+      "timestamp": 1526195107,
+      "id": 21
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4352022153054153,
+      "timestamp": 1526195113,
+      "id": 22
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9573027773523939,
+      "timestamp": 1526195115,
+      "id": 23
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4717282256625365,
+      "timestamp": 1526195121,
+      "id": 24
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9748037879180079,
+      "timestamp": 1526195121,
+      "id": 25
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4770212502678525,
+      "timestamp": 1526195122,
+      "id": 26
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9991401210018472,
+      "timestamp": 1526195128,
+      "id": 27
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.49531898707103933,
+      "timestamp": 1526195143,
+      "id": 28
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9731243230004631,
+      "timestamp": 1526195144,
+      "id": 29
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4678403825550639,
+      "timestamp": 1526195144,
+      "id": 30
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9619592140767684,
+      "timestamp": 1526195147,
+      "id": 31
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.47741813728915383,
+      "timestamp": 1526195164,
+      "id": 32
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9607875100711779,
+      "timestamp": 1526195166,
+      "id": 33
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4741943138187256,
+      "timestamp": 1526195344,
+      "id": 34
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9862620979637919,
+      "timestamp": 1526195345,
+      "id": 35
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4273800044772641,
+      "timestamp": 1526195347,
+      "id": 36
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9523580001637768,
+      "timestamp": 1526195348,
+      "id": 37
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.31964774966144127,
+      "timestamp": 1526195405,
+      "id": 38
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.42066556902603575,
+      "timestamp": 1526195405,
+      "id": 39
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.18983402930914506,
+      "timestamp": 1526195406,
+      "id": 40
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.30188108800325286,
+      "timestamp": 1526195407,
+      "id": 41
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.40762045322177626,
+      "timestamp": 1526195407,
+      "id": 42
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9575211326931125,
+      "timestamp": 1526195407,
+      "id": 43
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4174660514290868,
+      "timestamp": 1526196020,
+      "id": 44
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9340309492634651,
+      "timestamp": 1526196020,
+      "id": 45
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4934424563697132,
+      "timestamp": 1526196035,
+      "id": 46
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9899597591926486,
+      "timestamp": 1526196036,
+      "id": 47
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.49127764719707934,
+      "timestamp": 1526196049,
+      "id": 48
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9902959529667961,
+      "timestamp": 1526196051,
+      "id": 49
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.48274061849940025,
+      "timestamp": 1526196052,
+      "id": 50
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9831064111784755,
+      "timestamp": 1526196052,
+      "id": 51
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4919321155904563,
+      "timestamp": 1526196054,
+      "id": 52
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9937736952762873,
+      "timestamp": 1526196055,
+      "id": 53
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4908568071880264,
+      "timestamp": 1526196059,
+      "id": 54
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9908822289994934,
+      "timestamp": 1526196060,
+      "id": 55
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.49167229892533093,
+      "timestamp": 1526196060,
+      "id": 56
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9933091471902038,
+      "timestamp": 1526196062,
+      "id": 57
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4899345635839519,
+      "timestamp": 1526196064,
+      "id": 58
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9890054250508633,
+      "timestamp": 1526196064,
+      "id": 59
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4783709481174245,
+      "timestamp": 1526196065,
+      "id": 60
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9758763454264017,
+      "timestamp": 1526196065,
+      "id": 61
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.47384918210791,
+      "timestamp": 1526196065,
+      "id": 62
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9619406634579206,
+      "timestamp": 1526196067,
+      "id": 63
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.47509868786360493,
+      "timestamp": 1526196185,
+      "id": 64
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9926211692776065,
+      "timestamp": 1526196191,
+      "id": 65
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4874889420566046,
+      "timestamp": 1526196191,
+      "id": 66
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9699726568656497,
+      "timestamp": 1526196191,
+      "id": 67
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4716020924192199,
+      "timestamp": 1526196377,
+      "id": 68
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9716218886098591,
+      "timestamp": 1526196377,
+      "id": 69
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4319878515230207,
+      "timestamp": 1526196523,
+      "id": 70
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.943039932832357,
+      "timestamp": 1526196524,
+      "id": 71
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.4358308342299363,
+      "timestamp": 1526196524,
+      "id": 72
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.9380161295341511,
+      "timestamp": 1526196524,
+      "id": 73
+    },
+    {
+      "meeting_id": 2,
+      "score": 0.44839478088612,
+      "timestamp": 1526196548,
+      "id": 74
+    }
+  ],
+  "currentcustomer": [
+    {
+      "customer_id": 2,
+      "id": 1
+    }
+  ]
+}

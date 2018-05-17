@@ -111,8 +111,10 @@ function capture(){
 		faceReco(img);
 		//viewGallery();
 	}else{
+		editMeeting(Math.round(new Date()/1000)-currentMeeting.timestamp);
 		recording = false;
 		currentMeeting_id = null;
+		currentMeeting = null;
 	}
 
 }

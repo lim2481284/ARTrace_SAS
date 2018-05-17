@@ -90,3 +90,4 @@ $(document).ready(function(){
 
 let currentScore = 0;
 let currentMeeting_id = null;
+let currentMeeting = null;
