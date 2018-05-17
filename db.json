@@ -88,30 +88,6 @@
       "timestamp": 1526195073,
       "timelength":1474,
       "id": 2
-    },
-    {
-      "customer_id": 3,
-      "timestamp": 1526195102,
-      "timelength":0,
-      "id": 3
-    },
-    {
-      "customer_id": 3,
-      "timestamp": 1526195103,
-      "timelength": 0,
-      "id": 4
-    },
-    {
-      "customer_id": 3,
-      "timestamp": 1526195104,
-      "timelength": 0,
-      "id": 5
-    },
-    {
-      "customer_id": 3,
-      "timestamp": 1526195479,
-      "timelength":0,
-      "id": 6
     }
   ],
   "emotions": [
