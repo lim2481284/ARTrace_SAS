@@ -41,7 +41,7 @@ $(document).ready(function(){
 		canvasInput.width = w;
 		canvasInput.height = h;
 		cc.clearRect(0, 0, 400, 300);
-		cc.scale( (w/2)/400,h/300);
+		cc.scale( w/400,h/300);
 		ctracker.draw(canvasInput);
 		var cp = ctracker.getCurrentParameters();
 		var allEmotion = ec.meanPredict(cp);
