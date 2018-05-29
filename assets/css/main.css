@@ -19,6 +19,62 @@
 }	
 
 
+.skill-progress{
+    height: 8px;
+    background: #EEEEEE;
+    border-radius: 10px;
+    overflow: visible;
+    margin-bottom: 70px;
+	opacity:0.8;
+}
+.skill-progress .skill-progress-bar{
+    position: relative;
+    border-radius: 20px;
+    animation: animate-positive 2s;
+}
+.skill-progress .skill-progress-value{
+    position: absolute;
+    bottom: -45px;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    background: #383846;
+    font-size: 10px;
+    color: #fff;
+    border-radius: 100%;
+    text-align: center;
+    font-weight: bold;
+    top: 10px;
+    right: -23px;
+}
+.skill-progress .skill-progress-value:after{
+    content: "";
+    background: #133eb1;
+    padding: 3px;
+    border-radius: 100%;
+    position: absolute;
+    top: -8px;
+    left: 55%;
+    margin-left: -5px;
+}
+@-webkit-keyframes animate-positive{
+    0% { width: 0%; }
+}
+@keyframes animate-positive{
+    0% { width: 0%; }
+}
+
+.skill-tree-list-panel{
+    margin-top:25px;
+}
+
+.skill-progress-bar{
+    height:8px;
+    background: #3185e0; /* Old browsers */
+    background: -moz-linear-gradient(45deg, #3185e0 0%, #133eb1 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #3185e0 0%,#133eb1 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #3185e0 0%,#133eb1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
 /*.nav {
     width: 500px;
     height: 500px;
@@ -310,10 +366,10 @@ input[type=checkbox] + label:before {
     display: inline-block;
 }
 
-input[type=checkbox] + label:before { content: "\f096"; } /* unchecked icon */
+input[type=checkbox] + label:before {  } /* unchecked icon */
 input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
 
-input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
+input[type=checkbox]:checked + label:before {  } /* checked icon */
 input[type=checkbox]:checked + label:before { letter-spacing: 5px; } /* allow space for check mark */
 
 .displayInfoLabel{
@@ -647,6 +703,10 @@ video{
     top: -500px;    
     position: absolute;
 }
+.checklist-bottom{
+	  perspective: 500px;
+    perspective-origin: left;    
+}
 .recommendation-right {
     perspective: 500px;
     perspective-origin: left;    
@@ -657,6 +717,17 @@ video{
     right: 103px;  
     position: absolute;
 }
+.checklist-right {
+    perspective: 500px;
+    perspective-origin: left;    
+    width: 220px;
+	height: 
+    font-size: 17px;
+	top: 50px;
+    right: 103px;  
+    position: absolute;
+}
+
 
 .recommendation-left {
     position: absolute;
@@ -721,6 +792,22 @@ video{
    box-shadow: 0px 0px 30px 2px rgba(255,255,255,0.1);
 }
 
+.checklist-inner-right {
+  transition: .3s;
+  transform: rotateY(-20deg);
+  animation: checklist-r 30s infinite;  
+  background: rgba(104,177,238,0.5);  
+  border-top: 1px solid rgba(255,255,255,0.5);
+   border-bottom: 1px solid rgba(255,255,255,0.2);   
+   box-shadow: 0px 0px 30px 2px rgba(255,255,255,0.1);
+}
+@keyframes checklist-r {
+	0%  {transform: rotateY(-20deg);}
+    25% {transform: rotateY(-10deg);}
+    51% { transform: rotateY(-30deg);}
+	75% { transform: rotateY(-15deg);}
+    100% {transform: rotateY(-20deg);}
+}
 
 @keyframes r {
 	0%  {transform: rotateY(-30deg);}
@@ -758,6 +845,23 @@ video{
   margin-right: 1em;
 }
 
+.checklist-inner-right figure {
+  width: 220px;
+  padding: 1em;
+  display: inline-block;
+  margin-right: 1em;
+}
+
+
+.checklist-inner-right figcaption {
+	background: rgba(255,255,255,0.9);
+    color: black;
+    padding: 5px;
+    text-align: center;   
+	font-weight:bold;
+	margin-bottom:0px;
+	border-radius:5px;
+}
 
 .recommendation-inner-right figcaption {
 	background: rgba(255,255,255,0.9);
@@ -813,11 +917,20 @@ video{
 	font-size:15px;
 	font-weight:bold;
 }
-
+#checklist-right-line{    
+	position: absolute;
+    left: 218px;
+    top: -199px;
+}
 #recommendation-right-line{    
 	position: absolute;
     left: 218px;
     top: -199px;
+}
+#checklist-right-line-2{    
+	position: absolute;
+    left: 218px;
+       bottom: -210px;
 }
 #recommendation-right-line-2{    
 	position: absolute;
@@ -843,6 +956,26 @@ video{
     left: -200px;
     top: -80px;
 }
+#checklist-line-bottom-left{
+position: absolute;
+    left: -199px;
+    top: 86px;
+}
+#checklist-line-bottom-right{
+position: absolute;
+    top: 38px;
+    right: -497px;
+	}
+.progress-label{    border-bottom: 2px solid rgba(255,255,255,0.5);
+    width: 100px;
+    font-size: 13px;
+    font-weight: bold;
+    position:absolute;
+	padding-bottom: 2px;
+	    top: 65px;
+    left: 0px;
+}
+	
 
 #line-bottom{    
 	    position: absolute;
@@ -1119,8 +1252,18 @@ background: rgba(0,0,0,0.7);
 	transform:scale(0);
 }
 
+.checklist-inner-bottom{
+	animation: perpestive2 20s infinite;  
+}
 
 
+@keyframes perpestive2 {
+	0%  {transform: rotateY(0deg);}
+    25% {transform: rotateY(5deg);}
+    51% { transform: rotateY(-5deg);}
+	75% { transform: rotateY(5deg);}
+    100% {transform: rotateY(0deg);}
+}
 @keyframes perpestive {
 	0%  {transform: rotateY(0deg);}
     25% {transform: rotateY(15deg);}
@@ -1370,6 +1513,22 @@ background: rgba(0,0,0,0.7);
 	width:500px;
 }
 
+.checklist-bottom{
+	    width: 500px;
+    height: 40px;
+    
+    padding: 15px;
+    border-radius: 5px;
+	    bottom: 287px;
+    position: absolute;
+    z-index: 1000;
+}
+.checklist-inner-bottom{
+	background: rgba(255,255,255,0.5);
+	padding: 15px;
+	height: 40px;
+}
+
 
 
 #drawCanvas{
@@ -1383,5 +1542,118 @@ button{
     z-index: 100;
 	left:0;
 	display:none;
+}
+
+.exp {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.exp .checkbox {
+  display: table-cell;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.checklist-label {
+  display: inline-block;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+	padding-left:0 !important;
+  }
+.checklist-label span {
+  display: inline-block;
+  position: absolute;
+  background-color: transparent;
+  width: 25px;
+  height: 25px;
+  transform-origin: center;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  vertical-align: -6px;
+  margin-right: 10px;
+  transition: background-color 150ms 200ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89);
+}
+.checklist-label span:before {
+  content: "";
+  width: 0px;
+  height: 2px;
+  border-radius: 2px;
+  background: #fff;
+  position: absolute;
+  transform: rotate(45deg);
+  top: 9px;
+	left: 7px;
+  transition: width 50ms ease 50ms;
+  transform-origin: 0% 0%;
+}
+.checklist-label span:after {
+  content: "";
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: #fff;
+  position: absolute;
+  transform: rotate(305deg);
+    top: 13px;
+    left: 8px;
+  transition: width 50ms ease;
+  transform-origin: 0% 0%;
+}
+.checklist-label:hover span:before {
+  width: 5px;
+  transition: width 100ms ease;
+}
+.checklist-label:hover span:after {
+  width: 10px;
+  transition: width 150ms ease 100ms;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+input[type="checkbox"]:checked + .checklist-label span {
+  background-color: #fff;
+  transform: scale(1.25);
+}
+input[type="checkbox"]:checked + .checklist-label span:after {
+  width: 10px;
+  background: #1790b5;
+  transition: width 150ms ease 100ms;
+}
+input[type="checkbox"]:checked + .checklist-label span:before {
+  width: 5px;
+  background: #1790b5;
+  transition: width 150ms ease 100ms;
+}
+input[type="checkbox"]:checked + .checklist-label:hover span {
+  background-color: #fff;
+  transform: scale(1.25);
+}
+input[type="checkbox"]:checked + .checklist-label:hover span:after {
+  width: 10px;
+  background: #1790b5;
+  transition: width 150ms ease 100ms;
+}
+input[type="checkbox"]:checked + .checklist-label:hover span:before {
+  width: 5px;
+  background: #1790b5;
+  transition: width 150ms ease 100ms;
+}
+.checklist-content{
+	margin-top: 20px;
+}
+
+.checklist-item{
+	display:block;
+	margin-bottom:15px;
+}
+.checklist-item-content{
+	display: inline-block;
+    width: 80%;
+	margin-left:40px;
 }
 
