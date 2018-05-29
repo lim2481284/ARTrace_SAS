@@ -123,6 +123,43 @@ let recording = false;
 let recognizing = false;
 let key = false;
 
+//If face detected 
+function face_detected(){
+	$('.dank-ass-loader').addClass('detect-loader-flyout');
+	 $('.detecting-label').html('DETECTED !');
+	 setTimeout(function(){
+	  $('.icon').show();
+		$('.icon').addClass('icon--order-success');
+	}, 600);
+	setTimeout(function(){
+		$('.detecting-section').addClass('detect-flyout');
+		$('#drawCanvas').fadeOut('fast');			
+	}, 2000);
+	 setTimeout(function(){
+		info_fly_in();
+	}, 3000);
+}
+
+
+//If face is detecting 
+function face_detecting(){
+	setTimeout(function(){
+		  $('.detecting-section').addClass('detect-flyin');
+		  $('.dank-ass-loader').addClass('detect-loader-flyin');
+		}, 1500);
+		setTimeout(function(){
+		  $('#drawCanvas').fadeIn('fast');		  
+		}, 4500);		
+}
+
+
+//profile info fly in 
+function info_fly_in(){
+	$('.wrapper').addClass('profile-detail-flyin');
+	$('.wrapper-bottom').addClass('profile-mood-flyin');
+	$('.wrapper-left').addClass('profile-image-flyin');
+}
+
 $(document).ready(function(){
 
 	$(window).on("keydown",function(e){
@@ -149,7 +186,14 @@ $(document).ready(function(){
 
 	$('.start-bg').click(function(){
 		toggleFullScreen();
-		$(this).fadeOut(1500);
+		$(this).fadeOut(1000);
+		face_detecting();
 	});
 
+	
+	//animation here 
+	$('.switch-detected').click(function(){		
+		face_detected()
+	});
+	
 });

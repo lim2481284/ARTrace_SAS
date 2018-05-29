@@ -70,7 +70,18 @@ $(document).ready(function(){
 			emotionScore=0.5+(0.5*(1-allEmotion[0].value))
 		}
 
-		$(".info_score").html( (emotionScore*100.00).toFixed(2) +" %" );
+		var score =  (emotionScore*100).toFixed(0);
+		$(".info_score").html( score+" %" );
+		
+		if(score >70){
+			$(".info_score").css('color','#7BFFC3');
+			
+		}else if(score>30){
+			$(".info_score").css('color','#30CAFF');
+		}
+		else {
+			$(".info_score").css('color','#FF3030');
+		}
 
 		if( Math.abs(currentScore - emotionScore) > 0.1 ){
 			currentScore = emotionScore;
