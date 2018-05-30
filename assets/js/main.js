@@ -32,6 +32,7 @@ function startDictation() {
 			for(var i=0; i<2; i++){
 				if(e.results[0][0].transcript.indexOf($('.list_'+i).val()) >= 0){
 					$('.list_'+i).prop('checked', true);
+					$('.checklist-mark').trigger('change');
 				}
 			}
 
