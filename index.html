@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>AR Trace</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="manifest.json">
-
-    <!-- Main script & style -->
+    <link rel="manifest" href="manifest.json">    
     <script>var fullWidth = true</script>
     <script src="face-recog/js/libs/model_pca_20_svm.js"></script>
     <script src="face-recog/js/emotionDetector.js"></script>
@@ -18,14 +15,14 @@
     <script src="face-recog/js/faceDetection.js"></script>
     <script src="face-recog/js/faceRecognition.js"></script>
     <script src="face-recog/js/libs/d3.min.js"></script>
-    <script src="face-recog/js/libs/utils.js"></script>
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="face-recog/js/libs/utils.js"></script>    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">			
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Righteous" />
-	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />
-    <!-- custom script and style-->
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Nunito" />    
     <link rel="stylesheet" href="assets/css/main.css">
+
     <script src="assets/js/main.js"></script>
+
 
 </head>
 
@@ -37,6 +34,53 @@
     </div>
 	-->
 	 <button class='switch-detected'> Detected </button>
+	 
+	 <!-- MENU
+<button class='switch-menu-in'> Menu in </button>
+<button class='switch-menu-out'> Menu out </button>
+  <div class="slider-container ">
+
+    <div class="slider-content">		
+		<label class='current-time'> </label>
+		<div class='count-up'>
+		Sales time 
+		<label id="minutes">00</label>:<label id="seconds">00</label>
+		</div>
+		 <svg id='menu-left' height="1210" width="1500">
+			  <line x1="800" y1="300" x2="0" y2="0" style="stroke:rgba(255,255,255,0.8);stroke-width:1" />			  
+		</svg>	
+		<svg id='menu-right' height="1210" width="1500">
+			  <line x1="0" y1="250" x2="800" y2="0" style="stroke:rgba(255,255,255,0.8);stroke-width:1" />			  
+		</svg>
+		 <div class="slider-single">
+          <img class="slider-single-image" src="assets/image/profile-menu.png"/>          
+          <h1 class="slider-single-title">USER DETAILS </h1>
+
+          </div>
+		  
+		  <div class="slider-single">
+			  <img class="slider-single-image" src="assets/image/recommendation-menu.png"/>          
+			  <h1 class="slider-single-title">RECOMMENDATION </h1>
+          </div>
+		  
+		  
+		            <div class="slider-single">
+          <img class="slider-single-image" src="assets/image/checklist-menu.png"/>          
+          <h1 class="slider-single-title">CHECKLIST </h1>
+
+          </div>
+
+
+    </div>
+
+    <a class="slider-left" href="javascript:void(0);"><i class="fa fa-arrow-left"></i></a>
+
+    <a class="slider-right" href="javascript:void(0);"><i class="fa fa-arrow-right"></i></a>
+
+  </div>
+  
+-->
+	 
 	 
 	<div class='bg-white'></div>
     <image src='assets/image/gradient.png' class='gradient'/>
@@ -157,12 +201,24 @@
 			  </div>	    
 			</div>
 			
-			
+			<!--  CHECKLIST 
+			<div class="checklist-left">
+			  <div class="checklist-inner-left">
+				<img class='goodjob' src='assets/image/goodjob.png'/>
+				<div class='goodjob-label'> GOOD JOB </div>
+				<label class='togo'> 3 TO GO </label>
+				<svg id='goodjob-line-bottom-left' height="210" width="500">
+				  <line x1="0" y1="120" x2="200" y2="0" style="stroke:rgba(255,255,255,0.5);stroke-width:2" />			  
+				</svg>	
+							
+			  </div>	    
+			</div>
 			<div class="checklist-bottom">
-			  <div class="checklist-inner-bottom">
+			  <div class="checklist-inner-bottom" >				
+				<label class='completed-label'> COMPLETED! </label>
 				<div class="skill-progress">
-					<div class="skill-progress-bar" style="width:20%">
-						<div class="skill-progress-value">20%</div>
+					<div class="skill-progress-bar" style="width:0%">
+						<div class="skill-progress-value">0%</div>
 					</div>
 				</div>
 				<div class='progress-label'> PROGRESS </div>
@@ -189,9 +245,9 @@
 						<div class='checklist-item'>
 							<div class="exp">
 							   <div class="checkbox">														  
-									<input type="checkbox" id="check" name="check" value="" />
+									<input type="checkbox" id="check" name="check" value="" class='checklist-mark' />
 									<label class='checklist-label' for="check">
-									  <span><!-- This span is needed to create the "checkbox" element --></span><p class='checklist-item-content'>You are happy with the product ?</p>
+									  <span></span><p class='checklist-item-content'>You are happy with the product ?</p>
 									</label>
 								</div>
 							</div>
@@ -199,9 +255,9 @@
 						<div class='checklist-item'>
 							<div class="exp">
 							   <div class="checkbox">														  
-									<input type="checkbox" id="check2" name="check2" value="" />
+									<input type="checkbox" id="check2" name="check2" value=""  class='checklist-mark'/>
 									<label class='checklist-label' for="check2">
-									  <span><!-- This span is needed to create the "checkbox" element --></span><p class='checklist-item-content'>You are happy with the product ?</p>
+									  <span></span><p class='checklist-item-content'>You are happy with the product ?</p>
 									</label>
 								</div>
 							</div>
@@ -210,8 +266,9 @@
 				</figure>
 				  </div>	    
 			</div>
+			-->
 			
-			<!--
+			<!-- RECOMMENDATION
 			<div class="recommendation-right">
 			  <div class="recommendation-inner-right">
 				<img src='assets/image/triangle.png' class='triangle'/>				
@@ -303,4 +360,6 @@
     </section>
 	-->
   </body>
+  	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		<script  src="assets/js/menu.js"></script>
 </html>
