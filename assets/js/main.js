@@ -166,7 +166,71 @@ let recording = false;
 let recognizing = false;
 let key = false;
 
+//If face detected 
+function face_detected(){
+	$('.dank-ass-loader').addClass('detect-loader-flyout');
+	 $('.detecting-label').html('DETECTED !');
+	 setTimeout(function(){
+	  $('.icon').show();
+		$('.icon').addClass('icon--order-success');
+	}, 600);
+	setTimeout(function(){
+		$('.detecting-section').addClass('detect-flyout');
+		$('#drawCanvas').fadeOut('fast');			
+	}, 2000);
+	 setTimeout(function(){
+		info_fly_in();
+	}, 3000);
+}
+
+function formatAMPM(date) {
+	  var hours = date.getHours();
+	  var minutes = date.getMinutes();
+	  var ampm = hours >= 12 ? 'PM' : 'AM';
+	  hours = hours % 12;
+	  hours = hours ? hours : 12; // the hour '0' should be '12'
+	  minutes = minutes < 10 ? '0'+minutes : minutes;
+	  var strTime = hours + ':' + minutes + ' ' + ampm;
+	  return strTime;
+}
+	
+	
+//If face is detecting 
+function face_detecting(){
+	setTimeout(function(){
+		  $('.detecting-section').addClass('detect-flyin');
+		  $('.dank-ass-loader').addClass('detect-loader-flyin');
+		}, 1500);
+		setTimeout(function(){
+		  $('#drawCanvas').fadeIn('fast');		  
+		}, 4500);		
+}
+
+
+//profile info fly in 
+function info_fly_in(){
+	$('.wrapper').addClass('profile-detail-flyin');
+	$('.wrapper-bottom').addClass('profile-mood-flyin');
+	$('.wrapper-left').addClass('profile-image-flyin');
+}
+
+function goodjob_fly_in(){
+	$('.checklist-inner-left').addClass('goodjob-flyin');
+	setTimeout(function(){
+		$('.togo').show();
+	}, 800);
+	setTimeout(function(){
+		$('.checklist-inner-left').addClass('goodjob-flyout');
+	}, 3000);
+	setTimeout(function(){
+		$('.checklist-inner-left').attr('class','checklist-inner-left');
+		$('.togo').hide();
+	}, 3500);
+}
+
 $(document).ready(function(){
+	
+	$('.current-time').html(formatAMPM( new Date()));
 
 	$(window).on("keydown",function(e){
 		key = e.keyCode;
@@ -192,7 +256,80 @@ $(document).ready(function(){
 
 	$('.start-bg').click(function(){
 		toggleFullScreen();
-		$(this).fadeOut(1500);
+		$(this).fadeOut(1000);
+		face_detecting();
+		countup();
 	});
 
+	
+	//animation here 
+	$('.switch-detected').click(function(){		
+		face_detected()
+	});
+	$('.switch-menu-in').click(function(){		
+		$('.slider-container').addClass('menu-fly-in');		
+	});
+	$('.switch-menu-out').click(function(){		
+		$('.slider-container').addClass('menu-fly-out');
+		setTimeout(function(){
+			$('.slider-container').attr('class','slider-container');
+		}, 500);
+	});	
+	
+	
+	$(document).on('change','.checklist-mark',function(){
+			
+			var count =0;
+			var total =0;
+			$('.checklist-mark').each(function(i, obj) {
+				if($(this).prop('checked')){
+					count++;					
+				}
+				total++;
+			});			
+			var current = total - count ;
+			var current_percentage = count/total *100;
+			
+			$('.skill-progress-bar').css('width',current_percentage+'%');
+			$('.skill-progress-value').html(current_percentage+'%');
+			if(current_percentage ==100){
+				$('.checklist-inner-bottom').addClass('progress-completed');
+				$('.completed-label').addClass('label-completed');
+			}
+			if(current ==0) {
+				$('.togo').html('ALL DONE!');
+			}else 
+			{
+				$('.togo').html( current + ' TO GO');
+			}
+			goodjob_fly_in();
+	});
+	
 });
+
+
+
+//Countup
+function countup(){
+var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+var totalSeconds = 0;
+setInterval(setTime, 1000);
+
+function setTime() {
+  ++totalSeconds;
+  secondsLabel.innerHTML = pad(totalSeconds % 60);
+  minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+function pad(val) {
+  var valString = val + "";
+  if (valString.length < 2) {
+    return "0" + valString;
+  } else {
+    return valString;
+  }
+}
+}
+
+
