@@ -7,7 +7,7 @@
     <textarea name="q" id="transcript" placeholder="Speak" ></textarea>
     <img onclick="startDictation()" src="//i.imgur.com/cHidSVu.gif" />
   </div>
-  <input class='c' type='checkbox' value="are you happy with this product"> Are you happy with this product 
+  <input class='c' type='checkbox' value="are you happy with this product"> Are you happy with this product
 </form>
 
 <!-- HTML5 Speech Recognition API -->
@@ -24,20 +24,21 @@
 
       recognition.lang = "en-US";
       recognition.start();
-	  recognition.onsoundend =function(){
-		recognition.stop();
-		}
-		
+  	  recognition.onsoundend =function(){
+    		recognition.stop();
+  		}
+
 
       recognition.onresult = function(e) {
         document.getElementById('transcript').value
                                  = e.results[0][0].transcript;
-		
-		recognition.stop();
-		startDictation();
-		if(e.results[0][0].transcript.indexOf($('.c').val()) >= 0){
-			$('.c').prop('checked', true);
-		}
+
+    		recognition.stop();
+    		startDictation();
+    		if(e.results[0][0].transcript.indexOf($('.c').val()) >= 0){
+    			$('.c').prop('checked', true);
+    		}
+
       };
 
       recognition.onerror = function(e) {

@@ -204,7 +204,7 @@ function editMeeting(timelength){
     timestamp:currentMeeting.timestamp
   };
 
-  return $.ajax(db_url+"/meetings", {
+  return $.ajax(db_url+"/meetings/"+currentMeeting_id, {
     type:"PUT",
     data:JSON.stringify(payload),
     dataType: "json",

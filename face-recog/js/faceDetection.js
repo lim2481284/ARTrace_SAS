@@ -1,3 +1,5 @@
+var deltaTime = 0;
+
 $(document).ready(function(){
 	pModel.shapeModel.nonRegularizedVectors.push(9);
 	pModel.shapeModel.nonRegularizedVectors.push(11);
@@ -19,8 +21,7 @@ $(document).ready(function(){
 		ctracker.start(videoInput);
 		trackingStarted = true;
 		// start loop to draw face
-		setInterval(drawLoop, 100);
-
+		setInterval(drawLoop, 1);
 	}
 
 	/*function positionLoop() {
@@ -36,7 +37,7 @@ $(document).ready(function(){
 
 
 	function drawLoop() {
-
+		deltaTime += 1;
 		//requestAnimationFrame(drawLoop);
 		canvasInput.width = w;
 		canvasInput.height = h;
@@ -73,9 +74,10 @@ $(document).ready(function(){
 		$(".info_score").html( (emotionScore*100.00).toFixed(2) +" %" );
 
 		if( Math.abs(currentScore - emotionScore) > 0.1 ){
-			currentScore = emotionScore;
 			// add to db if in session
-			if(recording && currentMeeting_id){
+			if(recording && currentMeeting_id && deltaTime > 1000 ){
+				currentScore = emotionScore;
+				deltaTime = 0;
 				addEmotion(currentMeeting_id, emotionScore).done(function(res){
 					console.log(res);
 				});

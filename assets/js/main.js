@@ -7,6 +7,45 @@ var h = screen.height || window.innerHeight
 || document.documentElement.clientHeight
 || document.body.clientHeight;
 
+function startDictation() {
+	console.log("Dictation Started");
+	if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+		var recognition = new webkitSpeechRecognition();
+
+		recognition.continuous = true	;
+		recognition.interimResults = false;
+
+		recognition.lang = "en-US";
+		recognition.start();
+		recognition.onsoundend =function(){
+			recognition.stop();
+		}
+
+
+		recognition.onresult = function(e) {
+			//document.getElementById('transcript').value = e.results[0][0].transcript;
+			console.log(e.results[0][0].transcript);
+
+			recognition.stop();
+			startDictation();
+			for(var i=0; i<2; i++){
+				if(e.results[0][0].transcript.indexOf($('.list_'+i).val()) >= 0){
+					$('.list_'+i).prop('checked', true);
+				}
+			}
+
+		};
+
+		recognition.onerror = function(e) {
+			recognition.stop();
+		}
+
+	}
+}
+
+startDictation();
+
 $(document).ready(function(){
 	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
 
@@ -16,9 +55,11 @@ $(document).ready(function(){
 
 	function handleVideo(stream) {
 		video.srcObject = stream;
-		video2.width = w/2;
-		video2.height = h;
-		video2.srcObject = stream;
+		if(!fullWidth){
+			video2.width = w/2;
+			video2.height = h;
+			video2.srcObject = stream;
+		}
 	}
 
 	function videoError(e) {
@@ -109,12 +150,14 @@ function capture(){
 		//console.log(img)
 		recognizing = true;
 		faceReco(img);
+		startDictation();
 		//viewGallery();
 	}else{
 		editMeeting(Math.round(new Date()/1000)-currentMeeting.timestamp);
 		recording = false;
 		currentMeeting_id = null;
 		currentMeeting = null;
+		//stopDictation();
 	}
 
 }
