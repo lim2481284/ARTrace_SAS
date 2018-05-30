@@ -722,7 +722,7 @@ input[type=checkbox]
 	height:
     font-size: 17px;
 	top: 50px;
-    right: 103px;
+    right: -400px;
     position: absolute;
 }
 .checklist-right {
@@ -732,19 +732,19 @@ input[type=checkbox]
 	height:
     font-size: 17px;
 	top: 50px;
-    right: 103px;
+    right: -400px;
     position: absolute;
 }
 
 
 .recommendation-left {
     position: absolute;
-    left: -290px;
+    left: -550px;
     perspective: 800px;
     perspective-origin: right;
     width: 240px;
     font-size: 16px;
-    top: 60px;
+    top: -500px;
 }
 
 .recommendation-inner-left{
@@ -1479,6 +1479,70 @@ background: rgba(0,0,0,0.7);
 	right: 129px;
     top: 69px;
 }
+.recommendation-left-flyin{
+	animation: recommendationLeftFlyIn 0.4s linear;
+	left: -290px;
+    top: 60px;
+}
+.recommendation-left-flyout{
+	animation: recommendationLeftFlyOut 0.3s linear;
+    left:-550px;
+    top:500px;
+}
+.recommendation-right-flyin{
+	animation: recommendationRightFlyIn 0.4s linear;
+    top: 50px;
+    right: 103px;
+}
+.recommendation-right-flyout{
+	animation: recommendationRightFlyOut 0.3s linear;
+    right:-400px;
+    top: 50px;
+}
+
+
+.profile-detail-flyout{
+	animation: profileDetailFlyOut 0.3s linear;
+    right: -200px;
+    top: -500px;
+}
+@keyframes recommendationRightFlyIn {
+	0%  {    right:-400px;
+        top: 50px;}
+    100% {	    top: 50px;
+    right: 103px;}
+}
+@keyframes recommendationRightFlyOut {
+	0%  {	    top: 50px;
+    right: 103px;}
+    100% {    right:-400px;
+        top: 50px;}
+}
+@keyframes recommendationLeftFlyIn {
+	0%  {left:-550px;
+    top:500px;}
+    100% {	left: -290px;
+        top: 60px;}
+}
+@keyframes recommendationLeftFlyOut {
+	0%  {	left: -290px;
+        top: 60px;}
+    100% {left:-550px;
+    top:500px;}
+}
+
+
+
+
+@keyframes profileDetailFlyOut {
+	0%  {right: 129px;
+    top: 69px;}
+    100% {right: -200px;
+    top: -500px;}
+}
+
+
+
 
 .goodjob-flyin{
 	animation: goodjobFlyIn 0.2s linear;
@@ -1560,18 +1624,59 @@ background: rgba(0,0,0,0.7);
     top: 69px;}
 }
 
-
+.profile-mood-flyout{
+	animation: profileMoodFlyOut 0.3s linear;
+	top:700px;
+}
+@keyframes profileMoodFlyOut {
+	0%  {top:350px;}
+    100% {top:700px;}
+}
 
 @keyframes profileMoodFlyIn {
 	0%  {top:700px;}
     100% {top: 350px;}
 }
+.profile-image-flyout{
+	animation: profileImageFlyOut 0.3s linear;
+	top:-500px;
+}
 
-
+@keyframes profileImageFlyOut {
+	0%  {top:0;}
+    100% {top:-500px;}
+}
 @keyframes profileImageFlyIn {
 	0%  {top:-500px;}
     100% {top:0;}
 }
+
+
+.checklist-right-flyin{
+	animation: checklistRightFlyIn 0.3s linear;
+    top: 50px;
+    right: 103px;
+}
+.checklist-right-flyout{
+	animation: checklistRightFlyOut 0.3s linear;
+    top: 50px;
+    right: -400px;
+}
+
+
+@keyframes checklistRightFlyOut {
+	0%  {top: 50px;
+    right: 103px;}
+    100% {top: 50px;
+    right: -400px;}
+}
+@keyframes checklistRightFlyIn {
+	0%  {top: 50px;
+    right: -400px;}
+    100% {top: 50px;
+    right: 103px;}
+}
+
 
 
 @keyframes detectLoaderFlyOut {
@@ -1674,12 +1779,11 @@ background: rgba(0,0,0,0.7);
 .checklist-bottom{
 	    width: 500px;
     height: 40px;
-
     padding: 15px;
     border-radius: 5px;
-	    bottom: 287px;
     position: absolute;
     z-index: 1000;
+    bottom: 0px;
 }
 .checklist-inner-bottom{
 	background: rgba(255,255,255,0.5);
@@ -1825,9 +1929,6 @@ input[type="checkbox"]:checked + .checklist-label:hover span:before {
   100% {
     transform: scale(1);
   }
-}
-img{
-	border-radius:100%;
 }
 body{
 	overflow:hidden;
@@ -2107,4 +2208,27 @@ button{
 	    position: absolute;
     right: -350px;
     top: 30px;
+}
+
+
+.checklist-bottom-flyin{
+	animation: checklistBottomFlyIn 0.3s linear;
+    bottom: 287px;
+}
+
+.checklist-bottom-flyout{
+	animation: checklistBottomFlyOut 0.3s linear;
+    bottom: 0px;
+}
+
+
+@keyframes checklistBottomFlyOut {
+	0%  {bottom: 287px;}
+    100% { bottom: 0px;
+}
+}
+@keyframes checklistBottomFlyIn {
+	0%  { bottom: 0px;
+}
+    100% {    bottom: 287px;}
 }
