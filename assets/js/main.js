@@ -90,8 +90,9 @@ function toggleFullScreen() {
 
 // Rotation
 let rotation = 0;
-function up(){
-	rotation+=45;
+function nextSlide(){
+	$('.slider-right').trigger('click');
+	/*rotation+=45;
 	$('.radial-nav').css({'transform' : 'rotate('+rotation+'deg)'});
 	var c = $('.active-icon').attr('c');
 	$('.active-icon').removeClass('active-icon');
@@ -111,11 +112,12 @@ function up(){
 		function()
 		{
 			$( ".infoDisplay_"+c ).delay( 1000 ).addClass('swipeDown');
-		}, 200);
+		}, 200);*/
 	}
 
-	function down(){
-		rotation-=45;
+	function previousSlide(){
+		$('.slider-left').trigger('click');
+		/*rotation-=45;
 		$('.radial-nav').css({'transform' : 'rotate('+rotation+'deg)'});
 		var c = $('.active-icon').attr('c');
 		$('.active-icon').removeClass('active-icon');
@@ -136,7 +138,7 @@ function up(){
 			function()
 			{
 				$( ".infoDisplay_"+c ).delay( 1000 ).addClass('swipeDown');
-			}, 200);
+			}, 200);*/
 		}
 
 		function capture(){
@@ -170,22 +172,25 @@ function up(){
 		//If face detected
 		function face_detected(){
 			capture();
+			if(recording){
+				$('.dank-ass-loader').addClass('detect-loader-flyout');
+				$('.detecting-label').html('DETECTED !');
+				setTimeout(function(){
+					$('.icon').show();
+					$('.icon').addClass('icon--order-success');
+				}, 600);
 
-			$('.dank-ass-loader').addClass('detect-loader-flyout');
-			$('.detecting-label').html('DETECTED !');
-			setTimeout(function(){
-				$('.icon').show();
-				$('.icon').addClass('icon--order-success');
-			}, 600);
+				setTimeout(function(){
+					$('.detecting-section').addClass('detect-flyout');
+					//$('#drawCanvas').fadeOut('fast');
+				}, 2000);
 
-			setTimeout(function(){
-				$('.detecting-section').addClass('detect-flyout');
-				//$('#drawCanvas').fadeOut('fast');
-			}, 2000);
-
-			setTimeout(function(){
-				info_fly_in();
-			}, 3000);
+				setTimeout(function(){
+					info_fly_in();
+				}, 3000);
+			}else{
+				face_detecting();
+			}
 		}
 
 		function formatAMPM(date) {
@@ -275,24 +280,21 @@ function up(){
 			$(window).on("keydown",function(e){
 				key = e.keyCode;
 				//console.log(e);
-				if (key === 177 || e.key === "MediaTrackPrevious")
-				up();
-				if(key === 176 || e.key === "MediaTrackNext")
-				down();
+				if (key === 176 || e.key === "MediaTrackNext")
+					nextSlide();
+				if(key === 177 || e.key === "MediaTrackPrevious")
+					previousSlide();
+				if (key === 175 || e.key === "AudioVolumeUp")
+					$('.switch-menu-out').trigger('click');
+				if(key === 174 || e.key === "AudioVolumeDown")
+					$('.switch-menu-in').trigger('click');
 				if(key === 179 || e.key === "MediaPlayPause")
-				capture();
+					face_detected();
 			})
 
 			$(window).on("keyup",function(e){
 				key = false;
 			})
-
-			$('.up').click(function(){
-				up();
-			});
-			$('.down').click(function(){
-				down();
-			});
 
 			$('.start-bg').click(function(){
 				toggleFullScreen();
