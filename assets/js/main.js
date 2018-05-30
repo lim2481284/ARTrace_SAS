@@ -165,6 +165,7 @@ function nextSlide(){
 
 		}
 
+		let menuShown = false;
 		let recording = false;
 		let recognizing = false;
 		let key = false;
@@ -279,17 +280,24 @@ function nextSlide(){
 
 			$(window).on("keydown",function(e){
 				key = e.keyCode;
-				//console.log(e);
+				console.log(e);
 				if (key === 176 || e.key === "MediaTrackNext")
 					nextSlide();
 				if(key === 177 || e.key === "MediaTrackPrevious")
 					previousSlide();
 				if (key === 175 || e.key === "AudioVolumeUp")
-					$('.switch-menu-out').trigger('click');
-				if(key === 174 || e.key === "AudioVolumeDown")
-					$('.switch-menu-in').trigger('click');
-				if(key === 179 || e.key === "MediaPlayPause")
 					face_detected();
+				if(key === 174 || e.key === "AudioVolumeDown"){}
+				if(key === 179 || e.key === "MediaPlayPause"){
+					if(!menuShown){
+						menuShown = true;
+						$('.switch-menu-in').trigger('click');
+					}else{
+						menuShown = false;
+						$('.switch-menu-out').trigger('click');
+					}
+				}
+
 			})
 
 			$(window).on("keyup",function(e){
