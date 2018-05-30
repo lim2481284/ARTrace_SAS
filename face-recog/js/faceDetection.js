@@ -65,18 +65,20 @@ $(document).ready(function(){
 		var emotionScore=0;
 		var strongestEmotion=Math.max(allEmotion[0].value,allEmotion[1].value,allEmotion[2].value,allEmotion[3].value,allEmotion[4].value,allEmotion[5].value)
 		if (strongestEmotion==allEmotion[0].value || strongestEmotion==allEmotion[1].value || strongestEmotion==allEmotion[2].value || strongestEmotion==allEmotion[3].value){
-			emotionScore=(0.5*(1-allEmotion[0].value))
+			emotionScore=0.5-(0.5*(strongestEmotion))
 		}
 		else if (strongestEmotion==allEmotion[4].value || strongestEmotion==allEmotion[5].value){
-			emotionScore=0.5+(0.5*(1-allEmotion[0].value))
+			emotionScore=0.5+(0.5*(strongestEmotion))
 		}
+
+		//console.log("Emotion : ",emotionScore);
 
 		var score =  (emotionScore*100).toFixed(0);
 		$(".info_score").html( score+" %" );
-		
+
 		if(score >70){
 			$(".info_score").css('color','#7BFFC3');
-			
+
 		}else if(score>30){
 			$(".info_score").css('color','#30CAFF');
 		}
@@ -85,9 +87,10 @@ $(document).ready(function(){
 		}
 
 		if( Math.abs(currentScore - emotionScore) > 0.1 ){
+			currentScore = emotionScore;
+
 			// add to db if in session
-			if(recording && currentMeeting_id && deltaTime > 1000 ){
-				currentScore = emotionScore;
+			if(recording && currentMeeting_id){
 				deltaTime = 0;
 				addEmotion(currentMeeting_id, emotionScore).done(function(res){
 					console.log(res);

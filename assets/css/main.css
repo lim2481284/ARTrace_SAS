@@ -2082,12 +2082,12 @@ button{
 	 position: absolute;
     top: 0;
     z-index: 100;
-	left:0;
-	display:none;
+
 }
 .switch-menu-in{
 	display:block;
 	z-index:10000;
+  margin-top:200px;
 }
 
 .switch-menu-out{

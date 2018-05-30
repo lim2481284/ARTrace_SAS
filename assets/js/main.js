@@ -153,7 +153,7 @@ function capture(){
 		startDictation();
 		//viewGallery();
 	}else{
-		editMeeting(Math.round(new Date()/1000)-currentMeeting.timestamp);
+		editMeeting( Math.abs(Date.now()-currentMeeting.timestamp) );
 		recording = false;
 		currentMeeting_id = null;
 		currentMeeting = null;
@@ -166,19 +166,23 @@ let recording = false;
 let recognizing = false;
 let key = false;
 
-//If face detected 
+//If face detected
 function face_detected(){
+	capture();
+
 	$('.dank-ass-loader').addClass('detect-loader-flyout');
 	 $('.detecting-label').html('DETECTED !');
 	 setTimeout(function(){
 	  $('.icon').show();
 		$('.icon').addClass('icon--order-success');
 	}, 600);
+
 	setTimeout(function(){
 		$('.detecting-section').addClass('detect-flyout');
-		$('#drawCanvas').fadeOut('fast');			
+		//$('#drawCanvas').fadeOut('fast');
 	}, 2000);
-	 setTimeout(function(){
+
+	setTimeout(function(){
 		info_fly_in();
 	}, 3000);
 }
@@ -193,21 +197,21 @@ function formatAMPM(date) {
 	  var strTime = hours + ':' + minutes + ' ' + ampm;
 	  return strTime;
 }
-	
-	
-//If face is detecting 
+
+
+//If face is detecting
 function face_detecting(){
 	setTimeout(function(){
 		  $('.detecting-section').addClass('detect-flyin');
 		  $('.dank-ass-loader').addClass('detect-loader-flyin');
 		}, 1500);
 		setTimeout(function(){
-		  $('#drawCanvas').fadeIn('fast');		  
-		}, 4500);		
+		  $('#drawCanvas').fadeIn('fast');
+		}, 4500);
 }
 
 
-//profile info fly in 
+//profile info fly in
 function info_fly_in(){
 	$('.wrapper').addClass('profile-detail-flyin');
 	$('.wrapper-bottom').addClass('profile-mood-flyin');
@@ -229,7 +233,7 @@ function goodjob_fly_in(){
 }
 
 $(document).ready(function(){
-	
+
 	$('.current-time').html(formatAMPM( new Date()));
 
 	$(window).on("keydown",function(e){
@@ -261,35 +265,35 @@ $(document).ready(function(){
 		countup();
 	});
 
-	
-	//animation here 
-	$('.switch-detected').click(function(){		
+
+	//animation here
+	$('.switch-detected').click(function(){
 		face_detected()
 	});
-	$('.switch-menu-in').click(function(){		
-		$('.slider-container').addClass('menu-fly-in');		
+	$('.switch-menu-in').click(function(){
+		$('.slider-container').addClass('menu-fly-in');
 	});
-	$('.switch-menu-out').click(function(){		
+	$('.switch-menu-out').click(function(){
 		$('.slider-container').addClass('menu-fly-out');
 		setTimeout(function(){
 			$('.slider-container').attr('class','slider-container');
 		}, 500);
-	});	
-	
-	
+	});
+
+
 	$(document).on('change','.checklist-mark',function(){
-			
+
 			var count =0;
 			var total =0;
 			$('.checklist-mark').each(function(i, obj) {
 				if($(this).prop('checked')){
-					count++;					
+					count++;
 				}
 				total++;
-			});			
+			});
 			var current = total - count ;
 			var current_percentage = count/total *100;
-			
+
 			$('.skill-progress-bar').css('width',current_percentage+'%');
 			$('.skill-progress-value').html(current_percentage+'%');
 			if(current_percentage ==100){
@@ -298,13 +302,13 @@ $(document).ready(function(){
 			}
 			if(current ==0) {
 				$('.togo').html('ALL DONE!');
-			}else 
+			}else
 			{
 				$('.togo').html( current + ' TO GO');
 			}
 			goodjob_fly_in();
 	});
-	
+
 });
 
 
@@ -331,5 +335,3 @@ function pad(val) {
   }
 }
 }
-
-

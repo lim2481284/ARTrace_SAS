@@ -185,7 +185,7 @@ function addMeeting(){
   var payload = {
     customer_id:subject.id,
     timelength: 0,
-    timestamp:Math.round(new Date()/1000)
+    timestamp: Date.now()//Math.round(new Date()/1000)
   };
 
   return $.ajax(db_url+"/meetings", {
@@ -217,7 +217,7 @@ function addEmotion(meeting_id, score){
   var payload = {
     meeting_id:meeting_id,
     score:score,
-    timestamp:Math.round(new Date()/1000)
+    timestamp:Date.now()//Math.round(new Date()/1000)
   };
 
   return $.ajax(db_url+"/emotions", {
