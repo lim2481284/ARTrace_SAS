@@ -314,6 +314,7 @@ function nextSlide(){
 
 			//animation here
 			$('.switch-detected').click(function(){
+				$('#drawCanvas').fadeOut('slow');
 				face_detected()
 			});
 			$('.switch-menu-in').click(function(){
